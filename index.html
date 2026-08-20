@@ -1,421 +1,1219 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>NEXORA BAZAR</title>
 
 <style>
-*{box-sizing:border-box}
-body{
+*{
+  box-sizing:border-box;
   margin:0;
-  font-family:Arial,sans-serif;
-  background:#f5f7fb;
-  color:#222;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
 }
-header{
-  background:linear-gradient(135deg,#111827,#2563eb);
-  color:white;
-  padding:16px;
+
+body{
+  background:#f1f3f6;
+  color:#212121;
+  padding-bottom:70px;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.header{
+  background:#2874f0;
+  padding:12px 12px 10px;
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:50;
 }
+
 .top{
-  max-width:1100px;
-  margin:auto;
   display:flex;
   align-items:center;
-  justify-content:space-between;
   gap:10px;
 }
+
 .logo{
-  font-size:25px;
+  color:white;
+  font-size:23px;
   font-weight:bold;
+  white-space:nowrap;
 }
-.cart{
-  background:white;
-  color:#111;
-  border:0;
-  border-radius:20px;
-  padding:9px 14px;
-  cursor:pointer;
+
+.logo span{
+  color:#ffd700;
 }
+
 .search{
-  max-width:1100px;
-  margin:14px auto 0;
+  flex:1;
+  background:white;
+  height:42px;
+  border-radius:4px;
+  display:flex;
+  align-items:center;
+  padding:0 12px;
+  gap:8px;
 }
+
 .search input{
   width:100%;
-  padding:13px;
   border:0;
-  border-radius:10px;
+  outline:0;
   font-size:15px;
 }
-.hero{
-  max-width:1100px;
-  margin:18px auto;
-  background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+.cartTop{
   color:white;
-  padding:28px;
-  border-radius:18px;
+  font-size:24px;
+  position:relative;
 }
-.hero h1{margin:5px 0;font-size:32px}
-.hero p{margin:8px 0}
-.container{
+
+.badge{
+  position:absolute;
+  background:#ff6161;
+  color:white;
+  font-size:10px;
+  min-width:17px;
+  height:17px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  top:-7px;
+  right:-8px;
+}
+
+.location{
+  color:white;
+  font-size:13px;
+  margin-top:9px;
+}
+
+.location b{
+  color:#ffe500;
+}
+
+.page{
   max-width:1100px;
   margin:auto;
-  padding:0 15px 80px;
 }
-.section-title{
+
+.tabs{
+  background:white;
   display:flex;
-  justify-content:space-between;
+  overflow-x:auto;
+  padding:10px 5px;
+  gap:12px;
+}
+
+.tab{
+  min-width:75px;
+  text-align:center;
+  font-size:12px;
+  color:#555;
+}
+
+.tab .icon{
+  width:50px;
+  height:50px;
+  margin:auto;
+  border-radius:50%;
+  background:#eef4ff;
+  display:flex;
   align-items:center;
-  margin:22px 0 12px;
+  justify-content:center;
+  font-size:26px;
+  margin-bottom:5px;
 }
-.categories{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:10px;
-}
-.category{
-  background:white;
-  padding:16px 8px;
-  border-radius:12px;
-  text-align:center;
-  cursor:pointer;
-  box-shadow:0 2px 8px #0001;
-}
-.products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
-.card{
-  background:white;
-  border-radius:15px;
+
+.banner{
+  margin:10px;
+  height:185px;
+  border-radius:14px;
   overflow:hidden;
-  box-shadow:0 2px 10px #0001;
-}
-.card img{
-  width:100%;
-  height:190px;
-  object-fit:cover;
-  background:#eee;
-}
-.info{padding:12px}
-.info h3{margin:0 0 5px;font-size:17px}
-.sub{color:#777;font-size:13px}
-.price{font-size:20px;font-weight:bold;margin:8px 0}
-.old{text-decoration:line-through;color:#999;font-size:13px}
-.add{
-  width:100%;
-  padding:10px;
-  border:0;
-  border-radius:8px;
-  background:#2563eb;
+  background:linear-gradient(135deg,#1648a7,#2874f0);
   color:white;
-  cursor:pointer;
-  font-weight:bold;
-}
-.add:hover{background:#1d4ed8}
-.admin{
-  background:white;
-  padding:18px;
-  border-radius:15px;
-  margin-top:25px;
-  box-shadow:0 2px 10px #0001;
-}
-.admin input,.admin textarea,.admin select{
-  width:100%;
-  padding:11px;
-  margin:6px 0;
-  border:1px solid #ddd;
-  border-radius:8px;
-}
-.admin button{
-  background:#111827;
-  color:white;
-  border:0;
-  padding:11px 16px;
-  border-radius:8px;
-  cursor:pointer;
-}
-footer{
-  background:#111827;
-  color:white;
-  text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
   padding:22px;
 }
-@media(max-width:800px){
-  .products{grid-template-columns:repeat(2,1fr)}
-  .categories{grid-template-columns:repeat(3,1fr)}
+
+.bannerText h1{
+  font-size:28px;
+  margin-bottom:8px;
 }
-@media(max-width:500px){
-  .products{grid-template-columns:repeat(2,1fr);gap:8px}
-  .categories{grid-template-columns:repeat(3,1fr);font-size:13px}
-  .card img{height:150px}
-  .hero h1{font-size:25px}
+
+.bannerText p{
+  font-size:14px;
+  margin-bottom:15px;
+}
+
+.shopBtn{
+  background:#ffd700;
+  color:#111;
+  padding:10px 18px;
+  border-radius:5px;
+  font-weight:bold;
+}
+
+.bannerArt{
+  font-size:85px;
+}
+
+.section{
+  background:white;
+  margin-top:10px;
+  padding:15px 12px;
+}
+
+.sectionTitle{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:14px;
+}
+
+.categoryRow{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+}
+
+.cat{
+  min-width:80px;
+  text-align:center;
+  font-size:12px;
+}
+
+.catImg{
+  width:70px;
+  height:70px;
+  border-radius:10px;
+  background:#f4f6fa;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:35px;
+  margin:auto auto 6px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.product{
+  background:white;
+  border:1px solid #e0e0e0;
+  border-radius:5px;
+  overflow:hidden;
+  position:relative;
+}
+
+.productImg{
+  height:180px;
+  background:#f5f5f5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:75px;
+}
+
+.productInfo{
+  padding:10px;
+}
+
+.productName{
+  font-size:14px;
+  line-height:19px;
+  height:39px;
+  overflow:hidden;
+}
+
+.rating{
+  margin:6px 0;
+  font-size:12px;
+  color:#087f23;
+}
+
+.price{
+  font-size:19px;
+  font-weight:bold;
+}
+
+.old{
+  color:#777;
+  text-decoration:line-through;
+  font-size:12px;
+  margin-left:5px;
+}
+
+.discount{
+  color:#087f23;
+  font-size:12px;
+  margin-left:5px;
+}
+
+.add{
+  width:100%;
+  background:#ff9f00;
+  color:white;
+  padding:10px;
+  margin-top:8px;
+  font-weight:bold;
+}
+
+.buy{
+  width:100%;
+  background:#fb641b;
+  color:white;
+  padding:10px;
+  margin-top:5px;
+  font-weight:bold;
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:65px;
+  background:white;
+  border-top:1px solid #ddd;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:100;
+}
+
+.nav{
+  text-align:center;
+  font-size:11px;
+  color:#555;
+  position:relative;
+}
+
+.nav .navIcon{
+  font-size:25px;
+  margin-bottom:2px;
+}
+
+.nav.active{
+  color:#2874f0;
+  font-weight:bold;
+}
+
+.navBadge{
+  position:absolute;
+  top:-3px;
+  right:13px;
+  background:#ff6161;
+  color:white;
+  border-radius:50%;
+  width:17px;
+  height:17px;
+  font-size:10px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+.accountBox{
+  background:white;
+  margin:12px;
+  padding:18px;
+  border-radius:8px;
+}
+
+.user{
+  background:#f0f5ff;
+  padding:16px;
+  border-radius:8px;
+  margin-bottom:15px;
+}
+
+.user h2{
+  margin-bottom:5px;
+}
+
+.accountGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.accountItem{
+  border:1px solid #ddd;
+  padding:18px 10px;
+  text-align:center;
+  border-radius:5px;
+  font-weight:bold;
+  background:white;
+}
+
+.cartBox{
+  background:white;
+  margin:10px;
+  padding:15px;
+  border-radius:6px;
+}
+
+.cartItem{
+  display:flex;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #ddd;
+}
+
+.cartEmoji{
+  width:80px;
+  height:80px;
+  background:#f5f5f5;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:42px;
+}
+
+.cartTotal{
+  font-size:20px;
+  font-weight:bold;
+  margin-top:15px;
+}
+
+.checkout{
+  width:100%;
+  background:#fb641b;
+  color:white;
+  padding:14px;
+  margin-top:12px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+.empty{
+  text-align:center;
+  padding:70px 20px;
+  color:#777;
+}
+
+.categoriesPage{
+  background:white;
+  min-height:calc(100vh - 130px);
+  display:flex;
+}
+
+.side{
+  width:95px;
+  background:#f5f5f5;
+  flex-shrink:0;
+}
+
+.side div{
+  padding:18px 5px;
+  text-align:center;
+  font-size:11px;
+  border-bottom:1px solid #ddd;
+}
+
+.side div.active{
+  background:white;
+  color:#2874f0;
+  font-weight:bold;
+  border-left:4px solid #2874f0;
+}
+
+.catContent{
+  padding:15px;
+  flex:1;
+}
+
+.catGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.bigCat{
+  text-align:center;
+  background:#f8f9ff;
+  padding:15px 5px;
+  border-radius:10px;
+}
+
+.bigCatIcon{
+  font-size:45px;
+  margin-bottom:8px;
+}
+
+.toast{
+  position:fixed;
+  bottom:80px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#222;
+  color:white;
+  padding:12px 20px;
+  border-radius:5px;
+  display:none;
+  z-index:200;
+}
+
+@media(min-width:700px){
+  .products{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .banner{
+    height:240px;
+  }
+
+  .productImg{
+    height:220px;
+  }
+
+  .bottom{
+    max-width:1100px;
+    left:50%;
+    transform:translateX(-50%);
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="top">
-    <div class="logo">🛍️ NEXORA BAZAR</div>
-    <button class="cart" onclick="showCart()">🛒 Cart <span id="cartCount">0</span></button>
-  </div>
+<header class="header">
+  <div class="page">
+    <div class="top">
+      <div class="logo">🛍️ NEXORA <span>BAZAR</span></div>
 
-  <div class="search">
-    <input id="search" type="text"
-      placeholder="Product search karo..."
-      oninput="searchProducts()">
+      <div class="search">
+        🔍
+        <input id="searchInput"
+               type="text"
+               placeholder="Search for Products"
+               oninput="searchProducts()">
+      </div>
+
+      <div class="cartTop" onclick="showScreen('cart')">
+        🛒
+        <span class="badge" id="cartBadge">0</span>
+      </div>
+    </div>
+
+    <div class="location">
+      📍 Location not set &nbsp; <b>Select delivery location ›</b>
+    </div>
   </div>
 </header>
 
-<div class="container">
+<main class="page">
 
-<section class="hero">
-  <h1>NEXORA BAZAR</h1>
-  <p>Fashion, Electronics, Beauty aur bahut kuch ek hi jagah.</p>
-  <b>🔥 Special Deals Available</b>
+<!-- HOME -->
+<section id="home" class="screen active">
+
+  <div class="tabs">
+    <div class="tab">
+      <div class="icon">🛍️</div>
+      For You
+    </div>
+    <div class="tab">
+      <div class="icon">👕</div>
+      Fashion
+    </div>
+    <div class="tab">
+      <div class="icon">📱</div>
+      Mobiles
+    </div>
+    <div class="tab">
+      <div class="icon">💻</div>
+      Electronics
+    </div>
+    <div class="tab">
+      <div class="icon">💄</div>
+      Beauty
+    </div>
+    <div class="tab">
+      <div class="icon">🏠</div>
+      Home
+    </div>
+  </div>
+
+  <div class="banner">
+    <div class="bannerText">
+      <h1>BIG SHOPPING SALE</h1>
+      <p>Best products • Best prices • Best deals</p>
+      <button class="shopBtn"
+              onclick="document.getElementById('products').scrollIntoView()">
+        SHOP NOW
+      </button>
+    </div>
+
+    <div class="bannerArt">🛍️📦</div>
+  </div>
+
+  <div class="section">
+    <div class="sectionTitle">Shop by Category</div>
+
+    <div class="categoryRow">
+      <div class="cat"><div class="catImg">👕</div>Fashion</div>
+      <div class="cat"><div class="catImg">👟</div>Shoes</div>
+      <div class="cat"><div class="catImg">📱</div>Mobiles</div>
+      <div class="cat"><div class="catImg">💻</div>Electronics</div>
+      <div class="cat"><div class="catImg">⌚</div>Watches</div>
+      <div class="cat"><div class="catImg">💄</div>Beauty</div>
+      <div class="cat"><div class="catImg">🏠</div>Home</div>
+    </div>
+  </div>
+
+  <div class="section" id="products">
+    <div class="sectionTitle">Best Deals For You</div>
+
+    <div class="products" id="productGrid"></div>
+  </div>
+
 </section>
 
-<div class="section-title">
-  <h2>Shop by Category</h2>
-</div>
 
-<div class="categories">
-  <div class="category" onclick="filterCategory('Fashion')">👕<br>Fashion</div>
-  <div class="category" onclick="filterCategory('Electronics')">📱<br>Electronics</div>
-  <div class="category" onclick="filterCategory('Home')">🏠<br>Home</div>
-  <div class="category" onclick="filterCategory('Beauty')">💄<br>Beauty</div>
-  <div class="category" onclick="filterCategory('Accessories')">🎒<br>Accessories</div>
-</div>
+<!-- CATEGORIES -->
+<section id="categories" class="screen">
 
-<div class="section-title">
-  <h2>Products</h2>
-  <button onclick="renderProducts(products)">View All</button>
-</div>
+  <div class="categoriesPage">
 
-<div id="products" class="products"></div>
+    <div class="side">
+      <div class="active">🛍️<br>For You</div>
+      <div>👕<br>Fashion</div>
+      <div>📱<br>Mobiles</div>
+      <div>🏠<br>Appliances</div>
+      <div>💻<br>Electronics</div>
+      <div>⌚<br>Smart Gadgets</div>
+      <div>🏡<br>Home</div>
+      <div>💄<br>Beauty</div>
+      <div>🧸<br>Toys</div>
+      <div>🍎<br>Food</div>
+    </div>
 
-<div class="admin">
-  <h2>➕ Add Product</h2>
-  <p>Yahan se apna product website par add kar sakte ho.</p>
+    <div class="catContent">
 
-  <input id="pname" placeholder="Product name">
-  <input id="psub" placeholder="Short description">
-  <input id="pprice" type="number" placeholder="Price">
-  <input id="pold" type="number" placeholder="Old price">
-  
-  <select id="pcat">
-    <option>Fashion</option>
-    <option>Electronics</option>
-    <option>Home</option>
-    <option>Beauty</option>
-    <option>Accessories</option>
-  </select>
+      <h2>Popular Store</h2>
 
-  <input id="pimage" placeholder="Product image URL">
-  <textarea id="pdesc" placeholder="Product description"></textarea>
+      <div class="catGrid" style="margin-top:15px">
 
-  <button onclick="addProduct()">Add Product</button>
-</div>
+        <div class="bigCat">
+          <div class="bigCatIcon">🏷️</div>
+          <b>Value 365</b>
+        </div>
 
-</div>
+        <div class="bigCat">
+          <div class="bigCatIcon">🎁</div>
+          <b>Special Deals</b>
+        </div>
 
-<footer>
-  © 2026 NEXORA BAZAR — Your Shopping Store
-</footer>
+        <div class="bigCat">
+          <div class="bigCatIcon">🚌</div>
+          <b>Travel</b>
+        </div>
+
+        <div class="bigCat">
+          <div class="bigCatIcon">👟</div>
+          <b>Sneakers</b>
+        </div>
+
+      </div>
+
+      <h2 style="margin-top:30px">New & Upcoming</h2>
+
+      <div class="catGrid" style="margin-top:15px">
+
+        <div class="bigCat">
+          <div class="bigCatIcon">📱</div>
+          <b>Mobiles</b>
+        </div>
+
+        <div class="bigCat">
+          <div class="bigCatIcon">💻</div>
+          <b>Laptops</b>
+        </div>
+
+        <div class="bigCat">
+          <div class="bigCatIcon">🎧</div>
+          <b>Earbuds</b>
+        </div>
+
+        <div class="bigCat">
+          <div class="bigCatIcon">⌚</div>
+          <b>Smart Watches</b>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ACCOUNT -->
+<section id="account" class="screen">
+
+  <div class="accountBox">
+
+    <div class="user">
+      <h2>👤 My Account</h2>
+      <p>Name: <b id="accountName">Vasudev Thakur</b></p>
+    </div>
+
+    <div class="accountGrid">
+
+      <div class="accountItem">📦<br>Orders</div>
+      <div class="accountItem">♡<br>Wishlist</div>
+      <div class="accountItem">🎁<br>Coupons</div>
+      <div class="accountItem">🎧<br>Help Center</div>
+
+    </div>
+
+  </div>
+
+  <div class="section">
+    <h2>My Shopping</h2>
+    <p style="margin-top:12px;color:#666">
+      Manage your orders, wishlist and shopping preferences.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- CART -->
+<section id="cart" class="screen">
+
+  <div class="cartBox">
+
+    <h2>My Cart</h2>
+
+    <div id="cartItems"></div>
+
+    <div id="cartSummary"></div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- BOTTOM NAVIGATION -->
+<nav class="bottom">
+
+  <div class="nav active"
+       onclick="showScreen('home')">
+    <div class="navIcon">⌂</div>
+    Home
+  </div>
+
+  <div class="nav"
+       onclick="showScreen('categories')">
+    <div class="navIcon">▦</div>
+    Categories
+  </div>
+
+  <div class="nav"
+       onclick="showScreen('account')">
+    <div class="navIcon">♙</div>
+    Account
+  </div>
+
+  <div class="nav"
+       onclick="showScreen('cart')">
+
+    <div class="navIcon">
+      🛒
+      <span class="navBadge" id="navBadge">0</span>
+    </div>
+
+    Cart
+  </div>
+
+</nav>
+
+
+<div class="toast" id="toast"></div>
+
 
 <script>
 
-const STORAGE_KEY = "nexora_bazar_products";
+const products = [
 
-let products = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+  {
+    id:1,
+    name:"Men Stylish Casual T-Shirt",
+    category:"Fashion",
+    price:399,
+    old:999,
+    icon:"👕",
+    rating:"4.3"
+  },
 
-if(!products){
-  products = [
-    {
-      name:"Men's Casual Shirt",
-      sub:"Cotton Shirt",
-      price:599,
-      old:999,
-      category:"Fashion",
-      image:"https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=700&q=80",
-      description:"Comfortable casual cotton shirt."
-    },
-    {
-      name:"Women's Handbag",
-      sub:"Premium Bag",
-      price:899,
-      old:1499,
-      category:"Fashion",
-      image:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80",
-      description:"Stylish handbag for everyday use."
-    },
-    {
-      name:"Smart Watch",
-      sub:"NEXORA Premium",
-      price:1299,
-      old:1999,
-      category:"Electronics",
-      image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80",
-      description:"Modern smartwatch with premium design."
-    },
-    {
-      name:"Wireless Headphones",
-      sub:"Deep Bass",
-      price:999,
-      old:1599,
-      category:"Electronics",
-      image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80",
-      description:"Wireless headphones with clear sound."
-    }
-  ];
+  {
+    id:2,
+    name:"Running Sports Shoes For Men",
+    category:"Shoes",
+    price:799,
+    old:1999,
+    icon:"👟",
+    rating:"4.4"
+  },
 
-  saveProducts();
-}
+  {
+    id:3,
+    name:"Premium Smart Watch",
+    category:"Smart Gadgets",
+    price:999,
+    old:2499,
+    icon:"⌚",
+    rating:"4.1"
+  },
 
-let cartCount = 0;
+  {
+    id:4,
+    name:"Wireless Bluetooth Earbuds",
+    category:"Electronics",
+    price:699,
+    old:1499,
+    icon:"🎧",
+    rating:"4.2"
+  },
 
-function saveProducts(){
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(products));
-}
+  {
+    id:5,
+    name:"Latest Android Smartphone",
+    category:"Mobiles",
+    price:8999,
+    old:12999,
+    icon:"📱",
+    rating:"4.5"
+  },
 
-function renderProducts(list){
-  const box=document.getElementById("products");
+  {
+    id:6,
+    name:"Laptop For Students",
+    category:"Electronics",
+    price:29999,
+    old:39999,
+    icon:"💻",
+    rating:"4.4"
+  },
+
+  {
+    id:7,
+    name:"Trendy Ladies Dress",
+    category:"Fashion",
+    price:599,
+    old:1499,
+    icon:"👗",
+    rating:"4.0"
+  },
+
+  {
+    id:8,
+    name:"Stylish Travel Backpack",
+    category:"Travel",
+    price:499,
+    old:1199,
+    icon:"🎒",
+    rating:"4.3"
+  }
+
+];
+
+
+let cart = JSON.parse(localStorage.getItem("nexoraCart")) || [];
+
+
+function renderProducts(list = products){
+
+  const grid = document.getElementById("productGrid");
 
   if(!list.length){
-    box.innerHTML="<p>No products found.</p>";
+
+    grid.innerHTML =
+      '<div style="grid-column:1/-1;text-align:center;padding:50px">No products found 😔</div>';
+
     return;
   }
 
-  box.innerHTML=list.map((p,i)=>`
-    <article class="card">
-      <img src="${p.image}" alt="${p.name}">
-      <div class="info">
-        <h3>${p.name}</h3>
-        <div class="sub">${p.sub}</div>
-        <div class="price">₹${p.price}</div>
-        <div class="old">₹${p.old}</div>
-        <p>${p.description}</p>
-        <button class="add" onclick="addCart(${i})">
-          🛒 Add to Cart
-        </button>
+  grid.innerHTML = list.map(p => {
+
+    const discount =
+      Math.round((1 - p.price / p.old) * 100);
+
+    return `
+
+      <div class="product">
+
+        <div class="productImg">
+          ${p.icon}
+        </div>
+
+        <div class="productInfo">
+
+          <div class="productName">
+            ${p.name}
+          </div>
+
+          <div class="rating">
+            ⭐ ${p.rating} · Excellent
+          </div>
+
+          <div>
+            <span class="price">₹${p.price.toLocaleString()}</span>
+
+            <span class="old">
+              ₹${p.old.toLocaleString()}
+            </span>
+
+            <span class="discount">
+              ${discount}% off
+            </span>
+          </div>
+
+          <button class="add"
+                  onclick="addToCart(${p.id})">
+            ADD TO CART
+          </button>
+
+          <button class="buy"
+                  onclick="buyNow(${p.id})">
+            BUY NOW
+          </button>
+
+        </div>
+
       </div>
-    </article>
+
+    `;
+
+  }).join("");
+
+}
+
+
+function addToCart(id){
+
+  const product =
+    products.find(p => p.id === id);
+
+  const existing =
+    cart.find(item => item.id === id);
+
+  if(existing){
+
+    existing.qty++;
+
+  }else{
+
+    cart.push({
+      ...product,
+      qty:1
+    });
+
+  }
+
+  saveCart();
+
+  showToast("✅ Product added to cart");
+
+}
+
+
+function buyNow(id){
+
+  addToCart(id);
+
+  setTimeout(() => {
+    showScreen("cart");
+  },300);
+
+}
+
+
+function saveCart(){
+
+  localStorage.setItem(
+    "nexoraCart",
+    JSON.stringify(cart)
+  );
+
+  updateCartBadge();
+  renderCart();
+
+}
+
+
+function updateCartBadge(){
+
+  const count =
+    cart.reduce((sum,item) => sum + item.qty,0);
+
+  document.getElementById("cartBadge").textContent = count;
+  document.getElementById("navBadge").textContent = count;
+
+}
+
+
+function renderCart(){
+
+  const box =
+    document.getElementById("cartItems");
+
+  const summary =
+    document.getElementById("cartSummary");
+
+  if(!cart.length){
+
+    box.innerHTML = `
+      <div class="empty">
+        <div style="font-size:65px">🛒</div>
+        <h2>Your Cart is Empty</h2>
+        <p style="margin-top:8px">
+          Add products to your cart
+        </p>
+      </div>
+    `;
+
+    summary.innerHTML = "";
+
+    return;
+  }
+
+
+  box.innerHTML = cart.map(item => `
+
+    <div class="cartItem">
+
+      <div class="cartEmoji">
+        ${item.icon}
+      </div>
+
+      <div style="flex:1">
+
+        <b>${item.name}</b>
+
+        <p style="margin-top:8px">
+          ₹${item.price.toLocaleString()}
+        </p>
+
+        <div style="margin-top:8px">
+
+          <button
+            onclick="changeQty(${item.id},-1)"
+            style="padding:5px 10px">
+            −
+          </button>
+
+          <b style="padding:0 12px">
+            ${item.qty}
+          </b>
+
+          <button
+            onclick="changeQty(${item.id},1)"
+            style="padding:5px 10px">
+            +
+          </button>
+
+          <button
+            onclick="removeItem(${item.id})"
+            style="margin-left:15px;color:#d00;background:none">
+            Remove
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
   `).join("");
+
+
+  const total =
+    cart.reduce(
+      (sum,item) =>
+        sum + item.price * item.qty,
+      0
+    );
+
+
+  summary.innerHTML = `
+
+    <div class="cartTotal">
+      Total Amount:
+      ₹${total.toLocaleString()}
+    </div>
+
+    <button
+      class="checkout"
+      onclick="checkout()">
+      PLACE ORDER
+    </button>
+
+  `;
+
 }
 
-function addCart(i){
-  cartCount++;
-  document.getElementById("cartCount").textContent=cartCount;
-  alert(products[i].name+" cart mein add ho gaya!");
+
+function changeQty(id,change){
+
+  const item =
+    cart.find(x => x.id === id);
+
+  if(!item) return;
+
+  item.qty += change;
+
+  if(item.qty <= 0){
+
+    cart =
+      cart.filter(x => x.id !== id);
+
+  }
+
+  saveCart();
+
 }
 
-function showCart(){
-  alert("Cart mein "+cartCount+" product hain.");
+
+function removeItem(id){
+
+  cart =
+    cart.filter(x => x.id !== id);
+
+  saveCart();
+
+  showToast("Product removed");
+
 }
+
+
+function checkout(){
+
+  if(!cart.length){
+
+    showToast("Cart is empty");
+
+    return;
+  }
+
+  alert(
+    "🎉 Order Ready!\n\n" +
+    "Thank you for shopping with NEXORA BAZAR."
+  );
+
+}
+
 
 function searchProducts(){
-  const q=document.getElementById("search").value.toLowerCase();
 
-  const result=products.filter(p=>
-    p.name.toLowerCase().includes(q) ||
-    p.sub.toLowerCase().includes(q) ||
-    p.category.toLowerCase().includes(q)
-  );
+  const value =
+    document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const result =
+    products.filter(p =>
+      p.name.toLowerCase().includes(value) ||
+      p.category.toLowerCase().includes(value)
+    );
+
+  showScreen("home");
 
   renderProducts(result);
+
 }
 
-function filterCategory(category){
-  renderProducts(
-    products.filter(p=>p.category===category)
-  );
+
+function showScreen(name){
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(x =>
+      x.classList.remove("active")
+    );
+
+  document
+    .getElementById(name)
+    .classList.add("active");
+
+
+  document
+    .querySelectorAll(".nav")
+    .forEach(x =>
+      x.classList.remove("active")
+    );
+
+
+  const navs =
+    document.querySelectorAll(".nav");
+
+  if(name === "home")
+    navs[0].classList.add("active");
+
+  if(name === "categories")
+    navs[1].classList.add("active");
+
+  if(name === "account")
+    navs[2].classList.add("active");
+
+  if(name === "cart")
+    navs[3].classList.add("active");
+
+
+  if(name === "cart")
+    renderCart();
+
+  window.scrollTo(0,0);
+
 }
 
-function addProduct(){
 
-  const name=document.getElementById("pname").value.trim();
-  const sub=document.getElementById("psub").value.trim();
-  const price=Number(document.getElementById("pprice").value);
-  const old=Number(document.getElementById("pold").value);
-  const category=document.getElementById("pcat").value;
-  const image=document.getElementById("pimage").value.trim();
-  const description=document.getElementById("pdesc").value.trim();
+function showToast(text){
 
-  if(!name || !price){
-    alert("Product name aur price zaroor bharo.");
-    return;
-  }
+  const toast =
+    document.getElementById("toast");
 
-  products.push({
-    name:name,
-    sub:sub || "Quality Product",
-    price:price,
-    old:old || price,
-    category:category,
-    image:image || "https://via.placeholder.com/700x500?text=NEXORA+BAZAR",
-    description:description || "NEXORA BAZAR quality product."
-  });
+  toast.textContent = text;
 
-  saveProducts();
-  renderProducts(products);
+  toast.style.display = "block";
 
-  document.getElementById("pname").value="";
-  document.getElementById("psub").value="";
-  document.getElementById("pprice").value="";
-  document.getElementById("pold").value="";
-  document.getElementById("pimage").value="";
-  document.getElementById("pdesc").value="";
+  setTimeout(() => {
+    toast.style.display = "none";
+  },1800);
 
-  alert("✅ Product add ho gaya!");
 }
 
-renderProducts(products);
+
+renderProducts();
+updateCartBadge();
+renderCart();
 
 </script>
-<!-- PROFILE SECTION -->
-<div id="profileBox" style="
-  max-width:1100px;
-  margin:20px auto;
-  padding:20px;
-  background:white;
-  border-radius:18px;
-  box-shadow:0 4px 15px rgba(0,0,0,.08);
-">
-  <h2>👤 My Profile</h2>
 
-  <p><strong>Name:</strong> <span id="profileName">Loading...</span></p>
-
-  <button onclick="showProfile()" style="
-    background:#111827;
-    color:white;
-    border:0;
-    padding:12px 20px;
-    border-radius:10px;
-    cursor:pointer;
-  ">
-    View Profile
-  </button>
-</div>
-  <script>
-function showProfile(){
-    const name = document.getElementById("profileName").textContent;
-
-    alert(
-        "👤 My Profile\n\n" +
-        "Name: " + name
-    );
-}
-
-document.getElementById("profileName").textContent =
-    localStorage.getItem("profileName") || "Vasudev Thakur";
-  </script>
 </body>
 </html>
