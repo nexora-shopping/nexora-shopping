@@ -404,20 +404,18 @@ renderProducts(products);
     View Profile
   </button>
 </div>
-
-<script>
+  <script>
 function showProfile(){
-  const name = document.getElementById("profileName").textContent;
+    const name = document.getElementById("profileName").textContent;
 
-  alert(
-    "👤 My Profile\n\n" +
-    "Name: " + name
-  );
+    alert(
+        "👤 My Profile\n\n" +
+        "Name: " + name
+    );
 }
 
-/* Profile name */
 document.getElementById("profileName").textContent =
-  localStorage.getItem("profileName") || "Vasudev Thakur";
-</script>
+    localStorage.getItem("profileName") || "Vasudev Thakur";
+  </script>
 </body>
 </html>
